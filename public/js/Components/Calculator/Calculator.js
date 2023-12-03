@@ -90,6 +90,34 @@ export default class Calculator extends Component {
     initComponents() {
         this.comps.Add("calcbtnpower", new CalculatorButton({ text: "^", val: "^", name: "calcbtnpower" }));
         this.comps.Add("calcbtndecimal", new CalculatorButton({ text: ".", val: ".", name: "calcbtndecimal" }));
+        this.comps.Add("calcbtninverse", new CalculatorButton({
+            text: "inv", val: "inv", name: "calcbtninverse", class: `inverse-btn-${this.inverse}`, func: () => {
+                this.globalState.notifyChange({
+                    ...this.globalState.state,
+                    calculator: {
+                        ...this.globalState.state.calculator,
+                        buttonState: {
+                            ...this.globalState.state.calculator.buttonState,
+                            inverse: !this.globalState.state.calculator.buttonState.inverse
+                        }
+                    }
+                });
+            }
+        }));
+        this.comps.Add("calcbtndegrees", new CalculatorButton({
+            text: "deg", val: "deg", name: "calcbtndegrees", class: `degree-btn-${this.degrees}`, func: () => {
+                this.globalState.notifyChange({
+                    ...this.globalState.state,
+                    calculator: {
+                        ...this.globalState.state.calculator,
+                        buttonState: {
+                            ...this.globalState.state.calculator.buttonState,
+                            degrees: !this.globalState.state.calculator.buttonState.degrees
+                        }
+                    }
+                });
+            }
+        }));
 
         this.comps.Add("calcbtn0", new CalculatorButton({ text: "0", val: "0", name: "calcbtn0" }));
         this.comps.Add("calcbtn1", new CalculatorButton({ text: "1", val: "1", name: "calcbtn1" }));
@@ -119,7 +147,6 @@ export default class Calculator extends Component {
         this.comps.Add("calcbtndivide", new CalculatorButton({ text: "/", val: "/", name: "calcbtndivide" }));
         this.comps.Add("calcbtnopenb", new CalculatorButton({ text: "(", val: "(", name: "calcbtnopenb" }));
         this.comps.Add("calcbtncloseb", new CalculatorButton({ text: ")", val: ")", name: "calcbtncloseb" }));
-
         this.comps.Add("calcbtncalculate", new CalculatorButton({
             text: "=", val: "=", name: "calcbtncalculate", func: () => {
                 let newNum = new Number(new MathExpression(this.globalState.state.calculator.expression.input).getVal());
@@ -146,7 +173,6 @@ export default class Calculator extends Component {
                 })
             }
         }));
-
         this.comps.Add("calcbtnclear", new CalculatorButton({
             text: "AC", val: "AC", name: "calcbtnclear", func: () => {
                 this.globalState.notifyChange({
@@ -172,36 +198,6 @@ export default class Calculator extends Component {
                         expression: {
                             ...this.globalState.state.calculator.expression,
                             input: `${this.globalState.state.calculator.expression.input}`.slice(0, -1)
-                        }
-                    }
-                });
-            }
-        }));
-
-        this.comps.Add("calcbtninverse", new CalculatorButton({
-            text: "inv", val: "inv", name: "calcbtninverse", class: `inverse-btn-${this.inverse}`, func: () => {
-                this.globalState.notifyChange({
-                    ...this.globalState.state,
-                    calculator: {
-                        ...this.globalState.state.calculator,
-                        buttonState: {
-                            ...this.globalState.state.calculator.buttonState,
-                            inverse: !this.globalState.state.calculator.buttonState.inverse
-                        }
-                    }
-                });
-            }
-        }));
-
-        this.comps.Add("calcbtndegrees", new CalculatorButton({
-            text: "deg", val: "deg", name: "calcbtndegrees", class: `degree-btn-${this.degrees}`, func: () => {
-                this.globalState.notifyChange({
-                    ...this.globalState.state,
-                    calculator: {
-                        ...this.globalState.state.calculator,
-                        buttonState: {
-                            ...this.globalState.state.calculator.buttonState,
-                            degrees: !this.globalState.state.calculator.buttonState.degrees
                         }
                     }
                 });

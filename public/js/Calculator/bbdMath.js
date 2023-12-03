@@ -1,7 +1,7 @@
 import MathExpression from "./MathExpression.js";
 import State from "../State/State.js";
 let globalState = new State({});
-let degrees = () => {globalState.state.calculator.buttonState.degrees ? (Math.PI / 180) : 1};
+let degrees = () => globalState.state.calculator.buttonState.degrees ? (Math.PI / 180) : 1;
 
 export const operations = {
     "-": (l, r) => new Number(l) - new Number(r),
