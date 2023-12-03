@@ -26,7 +26,7 @@ export default class NavButton extends Component {
     }
 
     getHtml() {
-        if (this.url == "/" + window.location.href.match(/:\/\/[a-zA-Z0-9:]*\/(.*)/)[1]) {
+        if (this.url == "/" + window.location.href.match(/\.io\/([^\/]+)/)[1]) {
             this.classes.Active = "NavBtn-active-true";
         } else {
             this.classes.Active = "NavBtn-active-false";

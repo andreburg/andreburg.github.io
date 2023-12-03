@@ -17,7 +17,7 @@ const router = new Router([
 ]);
 
 const route = () => {
-    path = window.location.href.match(/:\/\/[a-zA-Z0-9:]*\/(.*)/)[1];
+    path = window.location.href.match(/\.io\/([^\/]+)/)[1];
     pathItems = path.split("/");
     let route = router.LoadRoute(pathItems[0]);
     app.innerHTML = route.comp.getHtml();
