@@ -17,9 +17,8 @@ const router = new Router([
 ]);
 
 const route = () => {
-    path = window.location.href.match(/\.io\/([^\/]+)/)[1];
-    pathItems = path.split("/");
-    let route = router.LoadRoute(pathItems[0]);
+    let path = new URL(window.location.href).pathname;
+    let route = router.LoadRoute(path);
     app.innerHTML = route.comp.getHtml();
     route.comp.sideEffects();
     app.classList.value = `darkmode-${globalState.state.page.darkmode}`
