@@ -17,7 +17,7 @@ const router = new Router([
 ]);
 
 const route = () => {
-    let path = new URL(window.location.href).pathname;
+    path = new URL(window.location.href).pathname;
     let route = router.LoadRoute(path);
     app.innerHTML = route.comp.getHtml();
     route.comp.sideEffects();
