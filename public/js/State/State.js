@@ -37,9 +37,6 @@ export default class State {
 
     notifyChange(obj) {
         State.instance.state = { ...State.instance.state, ...obj }
-        State.instance.listeners.forEach(l => {
-            l();
-        });
         localStorage.setItem('state', JSON.stringify(State.instance.state));
         dispatchEvent(new Event("Render"));
     }
